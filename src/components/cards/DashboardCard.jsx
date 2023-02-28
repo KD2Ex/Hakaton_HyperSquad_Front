@@ -9,12 +9,10 @@ const DashboardCard = ({Modal = null, currentCount, maxCount, icon, desc, xs, hi
 
 
     const handleClose = () => {
-        console.log('close');
         setOpen(false);
     }
 
     const handleOpen = () => {
-        console.log('close');
         setOpen(true);
     }
 
