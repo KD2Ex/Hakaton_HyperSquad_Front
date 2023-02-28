@@ -2,24 +2,23 @@ import { DevicesFoldOutlined, DevicesOutlined, LinkedCamera, LinkedCameraOutline
 import { Button, Card, CardContent, Grid, SvgIcon, Typography } from '@mui/material';
 import { Box } from '@mui/material';
 import React, { useContext, useState } from 'react'
-import ChartCard from './cards/ChartCard';
-import DashboardCard from './cards/DashboardCard';
-import OrdersCard from './cards/OrdersCard';
-import cameraIcon from '../assets/icon.svg';
-import deviceIcon from '../assets/icon (1).svg';
-import lightIcon from '../assets/icon (2).svg';
-import PieChartCard from './cards/PieChartCard';
-import ConsumptionCard from './cards/ConsumptionCard';
-import debtIcon from '../assets/Icon (5).svg';
-import { FlatDashboardContext } from '../context';
+import ChartCard from '../cards/ChartCard';
+import DashboardCard from '../cards/DashboardCard';
+import OrdersCard from '../cards/OrdersCard';
+import cameraIcon from '../../assets/Icon.svg';
+import deviceIcon from '../../assets/Icon (1).svg';
+import lightIcon from '../../assets/Icon (2).svg';
+import PieChartCard from '../cards/PieChartCard';
+import ConsumptionCard from '../cards/ConsumptionCard';
+import debtIcon from '../../assets/Icon (5).svg';
+import { FlatDashboardContext } from '../../context';
+import {Link} from "react-router-dom";
 
 
 const FlatDashboard = () => {
 
     const [deviceCount, setDeviceCount] = useState(7);
     const [lightsCount, setLightsCount] = useState(20);
-
-    const {selectedFlat, setSelectedFlat, setIsFlatDashboardOpen, isBuildingDashAcitve, setIsBuildingDashActive} = useContext(FlatDashboardContext);
 
     const [orders, setOrders] = useState([
         {id: 1, name: 'Иванов Иван', price: '3000р.', date: '12 Янв, 2023'},
@@ -28,18 +27,12 @@ const FlatDashboard = () => {
         
     ])
 
-    const handleBack = () => {
-        setSelectedFlat(null)
-        setIsFlatDashboardOpen(false);
-        setIsBuildingDashActive(true);
-
-    }
 
   return (
         <>
         
         <div style={{display: 'flex', justifyContent:'flex-start', alignItems: 'center', width:'inherit', paddingLeft: '16px', marginBottom: '16px'}}> 
-            <Button sx={{fontSize: '20px'}} onClick={handleBack}>
+            <Button sx={{fontSize: '20px'}} component={Link} to={`/complex/buildings/1`}>
                 Назад
             </Button>
 
@@ -54,7 +47,7 @@ const FlatDashboard = () => {
             <Typography
                 fontSize={24}
                 fontWeight='bold'>
-                {'Квартира №' + selectedFlat?.id}
+                {'Квартира №' + 1}
             </Typography>
 
             

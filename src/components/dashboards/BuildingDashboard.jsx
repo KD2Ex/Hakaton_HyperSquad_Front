@@ -1,23 +1,23 @@
 import { DevicesFoldOutlined, DevicesOutlined, LinkedCamera, LinkedCameraOutlined } from '@mui/icons-material';
-import { Card, CardContent, Grid, SvgIcon, Typography } from '@mui/material';
+import {Button, Card, CardContent, Grid, SvgIcon, Typography} from '@mui/material';
 import { Box } from '@mui/material';
 import React, { useState } from 'react'
-import ChartCard from './cards/ChartCard';
-import DashboardCard from './cards/DashboardCard';
-import OrdersCard from './cards/OrdersCard';
-import cameraIcon from '../assets/icon.svg';
-import deviceIcon from '../assets/icon (1).svg';
-import lightIcon from '../assets/icon (2).svg';
-import PieChartCard from './cards/PieChartCard';
-import ConsumptionCard from './cards/ConsumptionCard';
+import ChartCard from '../cards/ChartCard';
+import DashboardCard from '../cards/DashboardCard';
+import OrdersCard from '../cards/OrdersCard';
+import cameraIcon from '../../assets/Icon.svg';
+import deviceIcon from '../../assets/Icon (1).svg';
+import lightIcon from '../../assets/Icon (2).svg';
+import buildingIcon from '../../assets/Icon (4).svg';
+import PieChartCard from '../cards/PieChartCard';
+import ConsumptionCard from '../cards/ConsumptionCard';
+import {Link} from "react-router-dom";
 
 
-const Dashboard = () => {
+const BuildingDashboard = () => {
 
     const [deviceCount, setDeviceCount] = useState(100);
     const [camerasCount, setCamersCount] = useState(50);
-
-    
 
     const [orders, setOrders] = useState([
         {id: 1, name: 'Иванов Иван', price: '3000р.', date: '12 Янв, 2023'},
@@ -27,14 +27,44 @@ const Dashboard = () => {
     ])
 
   return (
+    <>
+      <div style={{display: 'flex', justifyContent:'flex-start', alignItems: 'center', width:'inherit', paddingLeft: '16px', marginBottom: '8px'}}>
+
+
+          <Button component={Link} to={`/complex/buildings`} sx={{fontSize: '20px'}}>
+              Назад
+          </Button>
+
+          <Typography
+              fontSize={20}
+              fontWeight='bold'
+              sx={{mx: 1}}
+          >
+              /
+          </Typography>
+
+          <Typography
+              fontSize={24}
+              fontWeight='bold'>
+                Северная 401
+          </Typography>
+
+
+      </div>
         <Grid container spacing={2} sx={{bgcolor: 'white', px: 1 }} direction="row">
 
             <Grid container spacing={2} item xs={3} direction="column">
+                <DashboardCard
+                    currentCount={50}
+                    hideSlash={true}
+                    icon={<img style={{marginBottom: '10px'}} src={buildingIcon}></img>}
+                    desc="Квартир в здании"
+                    Modal='Flats'/>
                     <OrdersCard
                         title="Заявки на ремонт"
                         orders={orders}
                         />
-                    <PieChartCard debt={'200 000'}/>
+                    <PieChartCard debt={'30 000'}/>
             </Grid>
 
                    
@@ -43,7 +73,7 @@ const Dashboard = () => {
                 <DashboardCard
                     xs={4}
                     icon={<img  style={{marginBottom: "10px"}}  src={cameraIcon}></img>}
-                    currentCount={deviceCount- 7}
+                    currentCount={deviceCount -5}
                     maxCount={deviceCount}
                     desc="Камер активно"
                     />
@@ -51,9 +81,8 @@ const Dashboard = () => {
                 <DashboardCard
                     xs={4}
                     icon={<img style={{marginBottom: "10px"}} src={deviceIcon}></img>}
-                    currentCount={camerasCount - 5}
+                    currentCount={camerasCount - 7}
                     maxCount={camerasCount}
-                    Modal='Devices'
                     desc="Оборудования исправно"
                     />
 
@@ -61,12 +90,12 @@ const Dashboard = () => {
                     xs={4}
                     icon={<img style={{marginBottom: "10px"}}  src={lightIcon}></img>}
                     title={camerasCount}
-                    currentCount={camerasCount}
+                    currentCount={camerasCount - 2}
                     maxCount={camerasCount}
                     desc="Ламп освещения работают"
                     />
                 <ChartCard
-                    income={'250 000'}
+                    income={'50 000'}
                     xs={12}/>
                 
                 <ConsumptionCard xs={12}/>
@@ -78,7 +107,8 @@ const Dashboard = () => {
            
 
         </Grid>
+    </>
   )
 }
 
-export default Dashboard;
+export default BuildingDashboard;

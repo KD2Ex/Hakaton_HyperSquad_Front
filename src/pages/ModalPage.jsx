@@ -1,6 +1,7 @@
 import { Box, Button, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React, { useContext } from 'react'
 import { FlatDashboardContext } from '../context';
+import {Link} from "react-router-dom";
 
 const style = {
     position: 'absolute',
@@ -16,10 +17,6 @@ const style = {
   };
 
 const ModalPage = ({open, handleClose}) => {
-
-    //{console.log(handleClose)}
-
-    const {isFlatDashboardOpen, setIsFlatDashboardOpen, setSelectedFlat} = useContext(FlatDashboardContext);
 
     const rows = [
       {id: 1, name: '1-й', type: 'Арендовано'},
@@ -39,11 +36,6 @@ const ModalPage = ({open, handleClose}) => {
     p: 4,
   };
 
-  const handleClick = (event) => {
-    handleClose();
-    setIsFlatDashboardOpen(true);
-    setSelectedFlat(rows[event.target.id - 1])
-  }
 
   return (
     <Modal 
@@ -74,7 +66,7 @@ const ModalPage = ({open, handleClose}) => {
                                     <TableCell>{row.id}</TableCell>
                                     <TableCell>{row.name}</TableCell>
                                     <TableCell>{row.type}</TableCell>
-                                    <TableCell sx={{textAlign: 'right'}}>{<Button id={row.id} onClick={handleClick}> Перейти</Button>}</TableCell>
+                                    <TableCell sx={{textAlign: 'right'}}>{<Button id={row.id} component={Link} to={`/complex/buildings/1/${row.id}`}> Перейти</Button>}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
